@@ -7,8 +7,8 @@ class UserController:
         self.mongo_user = MongodUser()
         self.response = UserResponse()
 
-    def authenticate_user(self, creditial, pasw):
-        user_info = self.mongo_user.UserConnect(creditial, pasw)
+    def authenticate_user(self, credential, pasw):
+        user_info = self.mongo_user.UserConnect(credential, pasw)
         parsed = self.response.parsedUser(user_info)
         return parsed
 

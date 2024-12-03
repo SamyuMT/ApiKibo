@@ -10,8 +10,8 @@ user_controller = UserController()
 
 #Funcion de consulta
 
-def consulta(creditial, pasw):
-    user_info = user_controller.authenticate_user(creditial, pasw)  # Pasar credencial y contraseña
+def consulta(credential, pasw):
+    user_info = user_controller.authenticate_user(credential, pasw)  # Pasar credencial y contraseña
     return parsedRespond(user_info)
 
 
@@ -22,16 +22,16 @@ def auth_user():
     if request.method == 'GET':
         # Si los parámetros vienen en la URL
         checkArgs(['credential', 'pass'], request.args)
-        creditial = request.args['credential']
+        credential = request.args['credential']
         pasw = request.args['pass']
     elif request.method == 'POST':
         # Si los parámetros vienen en un formulario POST
-        creditial = request.form.get('credential')
+        credential = request.form.get('credential')
         pasw = request.form.get('password')
 
     try:
         # Llamar al método de autenticación del controlador
-        return jsonify(consulta(creditial, pasw)), 200
+        return jsonify(consulta(credential, pasw)), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
