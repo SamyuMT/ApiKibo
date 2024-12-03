@@ -8,7 +8,7 @@ class ConnectionMongo:
         db = "dbkibo"
 
         # Conectar a MongoDB
-        connection = MongoClient("mongodb://localhost:27017/",
+        connection = MongoClient("mongodb+srv://jemymt1:EC0pIaE3LUam76IE@kibobase.hzgzz.mongodb.net/?retryWrites=true&w=majority&appName=KiboBase",
                                  UuidRepresentation="standard")
         self.con = connection[db]
         
