@@ -10,8 +10,8 @@ class MongodUser:
         col = db["users"]
         # Verificar si creditial es un email o un número de teléfono
         if "@" in credential:  # Es un correo electrónico
-            user = col.find_one({"email": credential, "password": pasw}, {"_id": False})
+            user = col.find_one({"email": credential, "password": pasw})
         else:  # Se asume que es un número de teléfono
-            user = col.find_one({"cel_number": credential, "password": pasw}, {"_id": False})
+            user = col.find_one({"cel_number": credential, "password": pasw})
 
         return user
