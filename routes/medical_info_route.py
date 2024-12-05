@@ -1,22 +1,22 @@
 from flask import Blueprint, request, jsonify
-from src.user.infrastructure.controller import UserController
+from src.medical_info.infrastructure.controller import MedicalInfoController
 from include.validators import checkArgs, parsedRespond
 
 # Crear un blueprint para el manejo de rutas de usuario
-user_bp = Blueprint('user', __name__)
+medical_info_bp = Blueprint('medical_info', __name__)
 
 # Instanciar el controlador de usuario
-user_controller = UserController()
+medical_info_controller = MedicalInfoController()
 
 #Funcion de consulta
 def consulta(id_user):
-    user_info = user_controller.authenticate_user(id_user)  # Pasar credencial y contraseña
-    return parsedRespond(user_info)
+    medical_info = medical_info_controller.authenticate_medical_info(id_user)  # Pasar credencial y contraseña
+    return parsedRespond(medical_info)
 
 
 # Definir una ruta POST para autenticar usuario (correo o celular + contraseña)
-@user_bp.route('/info', methods=['GET', 'POST'])
-def auth_user():
+@medical_info_bp.route('/info', methods=['GET', 'POST'])
+def auth_medical_info():
     # Aquí puedes manejar ambos métodos, GET o POST
     if request.method == 'GET':
         # Si los parámetros vienen en la URL
