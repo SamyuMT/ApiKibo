@@ -6,6 +6,7 @@ from routes.user_info_route import user_info_bp
 from routes.user_emergency_route import user_emergency_bp
 from routes.medical_info_route import medical_info_bp
 from routes.doctor_route import doctor_bp
+from routes.image_user_route import image_user_bp
 
 app = Flask(__name__)
 CORS(app)
@@ -17,10 +18,12 @@ app.register_blueprint(user_info_bp,url_prefix='/get_user_info')
 app.register_blueprint(user_emergency_bp,url_prefix='/get_user_emergency')
 app.register_blueprint(medical_info_bp,url_prefix='/get_medical_info')
 app.register_blueprint(doctor_bp,url_prefix='/get_doctor')
+app.register_blueprint(image_user_bp,url_prefix='/get_image_user')
+
 
 @app.route('/')
 def hello():
     return "Hello, World!"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

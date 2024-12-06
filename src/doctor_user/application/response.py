@@ -8,6 +8,7 @@ class DoctorResponse():
                 "last_name": doctor_info.get("last_name"),
                 "specialty": doctor_info.get("specialty"),
                 "institution": doctor_info.get("institution"),
+                "email": doctor_info.get("email"),
                 "state": True
             }
         else:
