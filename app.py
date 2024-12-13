@@ -9,6 +9,12 @@ from routes.doctor_route import doctor_bp
 from routes.image_user_route import image_user_bp
 from routes.validar_email_route import validar_email_bp
 from routes.validar_number_route import validar_number_bp
+from routes.crear_cedential_route import crear_credential_bp
+from routes.crear_user_route import crear_user_bp
+from routes.crear_info_user_route import crear_UserInfo_bp
+from routes.crear_user_emergency_route import crear_emergency_bp
+from routes.crear_doctor_route import crear_doctor_bp
+from routes.crear_medical_route import crear_medical_bp
 
 
 app = Flask(__name__)
@@ -24,6 +30,12 @@ app.register_blueprint(doctor_bp,url_prefix='/get_doctor')
 app.register_blueprint(image_user_bp,url_prefix='/get_image_user')
 app.register_blueprint(validar_email_bp,url_prefix='/get_validar_email')
 app.register_blueprint(validar_number_bp,url_prefix='/get_validar_number')
+app.register_blueprint(crear_credential_bp,url_prefix='/set_credential')
+app.register_blueprint(crear_user_bp,url_prefix='/set_user')
+app.register_blueprint(crear_UserInfo_bp,url_prefix='/set_user_info')
+app.register_blueprint(crear_emergency_bp,url_prefix='/set_emergency_info')
+app.register_blueprint(crear_doctor_bp,url_prefix='/set_doctor')
+app.register_blueprint(crear_medical_bp,url_prefix='/set_medical')
 
 
 @app.route('/')

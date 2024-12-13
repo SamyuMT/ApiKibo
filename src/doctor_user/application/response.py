@@ -4,6 +4,7 @@ class DoctorResponse():
     def parsedDoctor(doctor_info):
         if doctor_info:
             return {
+                "id": str(doctor_info.get("_id")),
                 "name": doctor_info.get("name"),
                 "last_name": doctor_info.get("last_name"),
                 "specialty": doctor_info.get("specialty"),
