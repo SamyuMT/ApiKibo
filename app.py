@@ -15,10 +15,13 @@ from routes.crear_info_user_route import crear_UserInfo_bp
 from routes.crear_user_emergency_route import crear_emergency_bp
 from routes.crear_doctor_route import crear_doctor_bp
 from routes.crear_medical_route import crear_medical_bp
+from routes.crear_prediccion_bpm_route import prediccion_bpm_bp
+from routes.crear_prediccion_ecg_route import prediccion_ecg_bp
 
 
 app = Flask(__name__)
 CORS(app)
+
 
 # Registrar el blueprint de usuario
 app.register_blueprint(credential_bp, url_prefix='/get_credential')
@@ -36,11 +39,13 @@ app.register_blueprint(crear_UserInfo_bp,url_prefix='/set_user_info')
 app.register_blueprint(crear_emergency_bp,url_prefix='/set_emergency_info')
 app.register_blueprint(crear_doctor_bp,url_prefix='/set_doctor')
 app.register_blueprint(crear_medical_bp,url_prefix='/set_medical')
-
+app.register_blueprint(prediccion_bpm_bp,url_prefix='/set_bpm')
+app.register_blueprint(prediccion_ecg_bp,url_prefix='/set_ecg')
 
 @app.route('/')
 def hello():
     return "Hello, World!"
 
 if __name__ == '__main__':
+    global model
     app.run(host="0.0.0.0", port=5000, debug=True)
