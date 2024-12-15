@@ -25,8 +25,14 @@ def SegmentarPorRPeacksPrediccion(model1D, peak,segmento,segmentLength):
     symbolPrediccion = predecir1D(model1D,SegmentoPredecir)
     symbolPrediccion = int(symbolPrediccion[0])  # Convierte el primer elemento a int
     etiqueta = number_to_label[symbolPrediccion]
-    print(etiqueta)
     return etiqueta
+
+def etiquetar(lista):
+    prioridad = {'V': 1, '!': 2, 'F': 3, 'f': 4, 'N': 5}
+    # Filtramos la etiqueta con la mayor prioridad (menor valor)
+    etiqueta_seleccionada = min(lista, key=lambda x: prioridad.get(x, float('inf')))
+    return etiqueta_seleccionada
+
 
 
 
@@ -39,8 +45,11 @@ class PrediccionResponse():
             peaks = encontrarCrucePorCero(segmentNew, 125, 0.7)
             T = promedioRR(peaks,125)
             segmentLength = int(1.2 * T * 125)  # Longitud del segmento en muestras Revisar
+            listaPreidccion = []
             for peak in peaks:
-                listaSegmento = SegmentarPorRPeacksPrediccion(model, peak, segmentNew, segmentLength)
-            return 1
+                prediccion = SegmentarPorRPeacksPrediccion(model, peak, segmentNew, segmentLength)
+                listaPreidccion.append(prediccion)
+            etiqueta = etiquetar(listaPreidccion)
+            return etiqueta
         else:
             return 0            

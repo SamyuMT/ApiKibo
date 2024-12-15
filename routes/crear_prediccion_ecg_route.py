@@ -28,8 +28,7 @@ def set_prediccion():
     info = data.get('data')
     try:
         prediccion = consulta(info, model)
-        print(prediccion)
-        return jsonify('info'), 200
+        return jsonify(prediccion), 200
     except FileNotFoundError:
         return abort(404, description="Error al crear")
 

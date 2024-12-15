@@ -17,6 +17,9 @@ from routes.crear_doctor_route import crear_doctor_bp
 from routes.crear_medical_route import crear_medical_bp
 from routes.crear_prediccion_bpm_route import prediccion_bpm_bp
 from routes.crear_prediccion_ecg_route import prediccion_ecg_bp
+from routes.crear_alerta import alerta_bp
+from routes.crear_data_ecg_route import crear_data_ecg_bp
+
 
 
 app = Flask(__name__)
@@ -41,6 +44,10 @@ app.register_blueprint(crear_doctor_bp,url_prefix='/set_doctor')
 app.register_blueprint(crear_medical_bp,url_prefix='/set_medical')
 app.register_blueprint(prediccion_bpm_bp,url_prefix='/set_bpm')
 app.register_blueprint(prediccion_ecg_bp,url_prefix='/set_ecg')
+app.register_blueprint(alerta_bp,url_prefix='/alerta')
+app.register_blueprint(crear_data_ecg_bp,url_prefix='/data_ecg')
+
+
 
 @app.route('/')
 def hello():
