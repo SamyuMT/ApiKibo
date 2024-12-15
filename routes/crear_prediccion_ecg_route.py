@@ -8,7 +8,7 @@ import os
 prediccion_ecg_bp = Blueprint('prediccion_ecg', __name__)
 prediccion_controller = PrediccionController()
 
-pathModelo = f"{os.getcwd()}/routes/model/model.h5"
+pathModelo = f"{os.getcwd()}/routes/model/model.keras"
 
 # Inicialización del modelo al cargar el blueprint (se carga una sola vez)
 try:
