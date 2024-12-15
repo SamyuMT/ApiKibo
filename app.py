@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 from routes.credential_route import credential_bp
 from routes.user_route import user_bp
@@ -47,7 +47,19 @@ app.register_blueprint(prediccion_ecg_bp,url_prefix='/set_ecg')
 app.register_blueprint(alerta_bp,url_prefix='/alerta')
 app.register_blueprint(crear_data_ecg_bp,url_prefix='/data_ecg')
 
-
+# Nueva ruta que muestra todas las rutas de la API
+@app.route('/api_routes', methods=['GET'])
+def api_routes():
+    routes = []
+    for rule in app.url_map.iter_rules():
+        # Ignorar rutas que no tienen un endpoint
+        if rule.endpoint != 'static':
+            routes.append({
+                "endpoint": rule.endpoint,
+                "methods": list(rule.methods - {'HEAD', 'OPTIONS'}),
+                "url": rule.rule
+            })
+    return jsonify({"routes": routes})
 
 @app.route('/')
 def hello():
