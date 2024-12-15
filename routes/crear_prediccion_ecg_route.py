@@ -1,17 +1,18 @@
 from flask import Blueprint, jsonify, request, send_file, abort
 from src.prediccion_ecg.infrastructure.controller import PrediccionController
 from tensorflow.keras.models import load_model
-import joblib
+import os
 
 
 # Crear un blueprint para el manejo de rutas de usuario
 prediccion_ecg_bp = Blueprint('prediccion_ecg', __name__)
 prediccion_controller = PrediccionController()
 
-pathModelo = "routes\model\model.h5"
+pathModelo = f"{os.getcwd()}/routes/model/model.h5"
 
 # Inicialización del modelo al cargar el blueprint (se carga una sola vez)
 try:
+    print()
     model = load_model(pathModelo)
     print("Modelo de IA cargado exitosamente.")
 except Exception as e:
