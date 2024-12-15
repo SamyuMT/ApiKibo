@@ -1,6 +1,4 @@
 
-import pywhatkit
-from datetime import datetime
 import time
 from twilio.rest import Client
 
