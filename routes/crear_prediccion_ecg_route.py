@@ -1,12 +1,14 @@
 from flask import Blueprint, jsonify, request, send_file, abort
 from src.prediccion_ecg.infrastructure.controller import PrediccionController
 from tensorflow.keras.models import load_model
+import joblib
+
 
 # Crear un blueprint para el manejo de rutas de usuario
 prediccion_ecg_bp = Blueprint('prediccion_ecg', __name__)
 prediccion_controller = PrediccionController()
 
-pathModelo = '.\modelIA\Mejorada_propia_30_Epocas_LTSM_5_Clases_Tres_Cabezas.h5'
+pathModelo = "routes\model\model.h5"
 
 # Inicialización del modelo al cargar el blueprint (se carga una sola vez)
 try:
