@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Logs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1e1e1e;
+            color: #dcdcdc;
+        }
+        #log-container {
+            padding: 20px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .log-entry {
+            margin: 0 0 10px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div id="log-container"></div>
+
+    <script>
+        const socket = io();
+
+        const logContainer = document.getElementById('log-container');
+
+        // Recibe mensajes de log del servidor
+        socket.on('log_message', (data) => {
+            const logsDiv = document.getElementById('logs');
+            const message = data.message;
+            const logEntry = document.createElement('p');
+            logEntry.className = 'log-entry';
+            logEntry.textContent = message;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight; // Scroll automático
+        });
+
+        socket.on('connect', () => {
+            console.log("Conectado al servidor.");
+        });
+
+        socket.on('disconnect', () => {
+            console.log("Desconectado del servidor.");
+        });
+    </script>
+</body>
+</html>

@@ -50,6 +50,7 @@ class PrediccionResponse():
                 prediccion = SegmentarPorRPeacksPrediccion(model, peak, segmentNew, segmentLength)
                 listaPreidccion.append(prediccion)
             etiqueta = etiquetar(listaPreidccion)
+            print(etiqueta)
             return etiqueta
         else:
             return 0            

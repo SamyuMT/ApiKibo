@@ -9,8 +9,8 @@ class PrediccionResponse():
             segmentNew = escalarVoltaje(data)
             peaks = encontrarCrucePorCero(segmentNew, 125, 0.7)
             T = promedioRR(peaks,125)
-            ecg = int(T*100)
-            print(ecg)
-            return ecg
+            bpm = int(T*100)
+            print(bpm)
+            return bpm
         else:
             return 0            

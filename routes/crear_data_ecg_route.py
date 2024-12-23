@@ -17,6 +17,47 @@ def consulta(id,ecg,bpm,pred):
 # Definir una ruta POST para autenticar usuario (correo o celular + contraseña)
 @crear_data_ecg_bp.route('/info', methods=['POST'])
 def set_data_ecg():
+    """
+    Guardar Data de interes.
+    ---
+    tags:
+      - Guardar Data
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: body
+        name: body
+        description: Datos necesarios para guardar data de interes
+        required: true
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "user123"
+            ecg:
+              type: array
+              items:
+                type: number
+              example: [0.1, 0.2, 0.3, 0.4, 0.5]
+            bpm:
+              type: array
+              items:
+                type: number
+              example: [89, 100, 98, 70]
+            pred:
+              type: array
+              items:
+                type: string
+              example: ["V", "f", "F", "N"]
+    responses:
+      200:
+        description: Información de ECG creada correctamente
+      404:
+        description: Error al crear
+    """
     data = request.get_json()
     id = data.get('id')
     ecg = data.get('ecg')

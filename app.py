@@ -19,6 +19,7 @@ from routes.crear_prediccion_bpm_route import prediccion_bpm_bp
 from routes.crear_prediccion_ecg_route import prediccion_ecg_bp
 from routes.crear_alerta import alerta_bp
 from routes.crear_data_ecg_route import crear_data_ecg_bp
+from swagger_config import configure_swagger
 
 
 
@@ -47,23 +48,13 @@ app.register_blueprint(prediccion_ecg_bp,url_prefix='/set_ecg')
 app.register_blueprint(alerta_bp,url_prefix='/alerta')
 app.register_blueprint(crear_data_ecg_bp,url_prefix='/data_ecg')
 
-# Nueva ruta que muestra todas las rutas de la API
-@app.route('/api_routes', methods=['GET'])
-def api_routes():
-    routes = []
-    for rule in app.url_map.iter_rules():
-        # Ignorar rutas que no tienen un endpoint
-        if rule.endpoint != 'static':
-            routes.append({
-                "endpoint": rule.endpoint,
-                "methods": list(rule.methods - {'HEAD', 'OPTIONS'}),
-                "url": rule.rule
-            })
-    return jsonify({"routes": routes})
+# Configurar Swagger
+configure_swagger(app)
 
 @app.route('/')
 def hello():
     return "Hello, World!"
+
 
 if __name__ == '__main__':
     global model
