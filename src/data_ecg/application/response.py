@@ -1,9 +1,12 @@
 from datetime import datetime
 
 def reestructurar_cadena(data, id):
+    created_at = datetime.now()
     transformed_data = {
-        "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "created_date": created_at.strftime("%Y-%m-%d"),
+        "created_time": created_at.strftime("%H:%M:%S"),
         "id_user": id,
+        "length": len(data),
         "data": data,
     }
     return transformed_data

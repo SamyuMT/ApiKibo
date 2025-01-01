@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 from flask_cors import CORS
 from routes.credential_route import credential_bp
 from routes.user_route import user_bp
@@ -19,9 +19,11 @@ from routes.crear_prediccion_bpm_route import prediccion_bpm_bp
 from routes.crear_prediccion_ecg_route import prediccion_ecg_bp
 from routes.crear_alerta import alerta_bp
 from routes.crear_data_ecg_route import crear_data_ecg_bp
+from routes.listar_registros_route import listar_registros_bp
+from routes.registro_route import registro_route_bp
+
+
 from swagger_config import configure_swagger
-
-
 
 app = Flask(__name__)
 CORS(app)
@@ -47,13 +49,18 @@ app.register_blueprint(prediccion_bpm_bp,url_prefix='/set_bpm')
 app.register_blueprint(prediccion_ecg_bp,url_prefix='/set_ecg')
 app.register_blueprint(alerta_bp,url_prefix='/alerta')
 app.register_blueprint(crear_data_ecg_bp,url_prefix='/data_ecg')
+app.register_blueprint(listar_registros_bp,url_prefix='/listar_registros')
+app.register_blueprint(registro_route_bp,url_prefix='/registro')
+
 
 # Configurar Swagger
 configure_swagger(app)
 
 @app.route('/')
 def hello():
-    return "Hello, World!"
+    return '''
+    <iframe src="https://kibo-graph.vercel.app/" width="100%" height="100%" style="border:none;"></iframe>
+    '''
 
 
 if __name__ == '__main__':

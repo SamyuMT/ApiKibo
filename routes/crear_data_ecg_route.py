@@ -36,7 +36,7 @@ def set_data_ecg():
           properties:
             id:
               type: string
-              example: "user123"
+              example: "6774504f59bdd3a54dd87a5e"
             ecg:
               type: array
               items:

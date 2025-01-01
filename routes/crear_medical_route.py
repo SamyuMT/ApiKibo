@@ -8,7 +8,7 @@ medical_crear_controller = CrearMedicalController()
 
 # Función de consulta
 def consulta(info, id):
-    medical_info = medical_crear_controller.crear_Medical(info, id)  # Pasar información médica y ID
+    medical_info = medical_crear_controller.crear_medical(info, id)  # Pasar información médica y ID
 
 # Definir una ruta POST para crear información médica
 @crear_medical_bp.route('/create', methods=['POST'])
@@ -57,6 +57,7 @@ def set_crear_medical():
     if not info_cre or not id:
         return abort(400, description="Datos no proporcionados")
     try:
+        print(info_cre, id)
         consulta(info_cre, id)
         return f"Información médica creada correctamente {info_cre}"
     except FileNotFoundError:

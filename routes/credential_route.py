@@ -75,6 +75,7 @@ def auth_credential():
         checkArgs(['credential', 'pass'], request.args)
         credential = request.args['credential']
         pasw = request.args['pass']
+        print(credential, pasw)
     elif request.method == 'POST':
         # Si los parámetros vienen en un formulario POST
         credential = request.form.get('credential')
