@@ -4,6 +4,8 @@ import os
 import tensorflow as tf
 
 
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'  # Deshabilita las GPUs
+
 
 # Crear un blueprint para el manejo de rutas de usuario
 prediccion_ecg_bp = Blueprint('prediccion_ecg', __name__)
@@ -11,19 +13,16 @@ prediccion_controller = PrediccionController()
 
 pathModelo = f"{os.getcwd()}/routes/model/model.h5"
 
-# Deshabilitar GPU para TensorFlow
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 
 # Inicialización del modelo al cargar el blueprint (se carga una sola vez)
 try:
-    # Cargar el modelo en la CPU
-    with tf.device('/CPU:0'):
-        model = tf.keras.models.load_model(pathModelo)
-    print("Modelo de IA cargado exitosamente en CPU.")
+    model = tf.keras.models.load_model(pathModelo)
+    print("Modelo de IA cargado exitosamente.")
 except Exception as e:
     print(f"Error al cargar el modelo: {e}")
     model = None
+
 
 
 def consulta(info, model):
